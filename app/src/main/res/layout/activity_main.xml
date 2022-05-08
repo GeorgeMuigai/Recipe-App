@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e8e9e8"
+    android:padding="8dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:layout_marginLeft="8dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:id="@+id/txt_category_title"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_below="@+id/txt_category_title"
+        tools:listitem="@layout/list_item_category"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal"
+        android:id="@+id/rv_categories"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_height="wrap_content"
+        android:text="Meals"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_below="@+id/rv_categories"
+        android:id="@+id/meals"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_meals"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/list_item_meals"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_marginTop="3dp"
+        app:spanCount="2"
+        android:layout_below="@+id/meals"/>
+</RelativeLayout>
