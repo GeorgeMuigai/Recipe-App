@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +17,11 @@ import java.util.List;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
     List<CategoriesList> categoriesLists;
+    MainActivity mainActivity;
 
-    public CategoriesAdapter(List<CategoriesList> categoriesLists) {
+    public CategoriesAdapter(List<CategoriesList> categoriesLists, MainActivity mainActivity) {
         this.categoriesLists = categoriesLists;
+        this.mainActivity = mainActivity;
     }
 
     @NonNull
@@ -35,6 +38,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         }catch (Exception e){}
         holder.txt_category.setText(list.getStrCategory());
 
+
+        holder.itemView.setOnClickListener(View ->{
+            //categoryItemClick.onCategoryClick(position);
+            mainActivity.retrofitClient(list.getStrCategory());
+        });
     }
 
     @Override

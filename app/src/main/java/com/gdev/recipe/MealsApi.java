@@ -8,6 +8,6 @@ public interface MealsApi {
     @GET("categories.php")
     Call<CategoriesModal> getCategories();
 
-    @GET("filter.php?c=Beef")
-    Call<MealsModal> getFilteredMeals();
+    @GET
+    Call<MealsModal> getFilteredMeals(@Url String url);
 }

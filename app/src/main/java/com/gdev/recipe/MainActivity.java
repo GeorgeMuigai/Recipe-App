@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -15,34 +17,41 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     RecyclerView rv_categories, rv_meals;
 
     CategoriesAdapter categoriesAdapter;
-    List<CategoriesList> categoriesList = new ArrayList<>();
+    ArrayList<CategoriesList> categoriesList;
 
     MealsAdapter mealsAdapter;
-    List<MealsList> mealsList = new ArrayList<>();
+    ArrayList<MealsList> mealsList;
 
-    public String category;
-    
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        category = "";
+        mealsList = new ArrayList<>();
+        categoriesList = new ArrayList<>();
+
+        progressBar = findViewById(R.id.progress_circular);
+
         // recycler views
         categoriesRecycler();
         mealsRecycler();
 
-        retrofitClient();
+        retrofitClient("Lamb");
+        mealsAdapter.notifyDataSetChanged();
     }
 
-    private void retrofitClient() {
+    public void retrofitClient(String category) {
+        String categoryUrl = "filter.php?c=" + category;
+        String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         MealsApi mealsApi = retrofit.create(MealsApi.class);
@@ -74,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // adding the meals
-        Call<MealsModal> getFilteredMeals = mealsApi.getFilteredMeals();
+        Call<MealsModal> getFilteredMeals = mealsApi.getFilteredMeals(categoryUrl);
         getFilteredMeals.enqueue(new Callback<MealsModal>() {
             @Override
             public void onResponse(Call<MealsModal> call, Response<MealsModal> response) {
@@ -85,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 MealsModal mealsModal = response.body();
                 ArrayList<MealsList> meals = mealsModal.getMeals();
+                mealsList.clear();
 
                 for (int i = 0; i < meals.size(); i++)
                 {
@@ -98,12 +108,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        progressBar.setVisibility(View.GONE);
 
     }
 
     private void categoriesRecycler() {
         rv_categories = findViewById(R.id.rv_categories);
-        categoriesAdapter = new CategoriesAdapter(categoriesList);
+        categoriesAdapter = new CategoriesAdapter(categoriesList, MainActivity.this);
         rv_categories.setAdapter(categoriesAdapter);
     }
     private void mealsRecycler() {

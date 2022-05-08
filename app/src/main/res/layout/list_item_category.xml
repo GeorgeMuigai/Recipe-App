@@ -3,6 +3,7 @@
     android:layout_width="100dp"
     android:layout_height="100dp"
     android:layout_gravity="center"
+    android:background="?attr/selectableItemBackground"
     android:layout_margin="8dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
