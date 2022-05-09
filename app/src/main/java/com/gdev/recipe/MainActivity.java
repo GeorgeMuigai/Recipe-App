@@ -3,6 +3,7 @@ package com.gdev.recipe;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity{
 
     ProgressBar progressBar;
 
+    int id = 52874;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity{
 
     public void retrofitClient(String category) {
         String categoryUrl = "filter.php?c=" + category;
+        String idUrl = "lookup.php?i=" + Integer.toString(id);
         String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -108,6 +112,30 @@ public class MainActivity extends AppCompatActivity{
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        // viewing the meal
+        /*Call<MealsModal> getMealById = mealsApi.getMealById(idUrl);
+        getMealById.enqueue(new Callback<MealsModal>() {
+            @Override
+            public void onResponse(Call<MealsModal> call, Response<MealsModal> response) {
+                if(!response.isSuccessful())
+                {
+                    Toast.makeText(MainActivity.this, "Error code : " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                MealsModal mealsModal = response.body();
+                ArrayList<MealsList> mealsListArrayList = mealsModal.getMeals();
+                Intent viewMeal = new Intent(MainActivity.this, ViewMeal.class);
+                viewMeal.putExtra("mealname", mealsListArrayList.get(0).getStrMeal());
+                viewMeal.putExtra("instructions", mealsListArrayList.get(0).getStrInstructions());
+                startActivity(viewMeal);
+            }
+
+            @Override
+            public void onFailure(Call<MealsModal> call, Throwable t) {
+
+            }
+        });*/
         progressBar.setVisibility(View.GONE);
 
     }
@@ -121,5 +149,9 @@ public class MainActivity extends AppCompatActivity{
         rv_meals = findViewById(R.id.rv_meals);
         mealsAdapter = new MealsAdapter(mealsList);
         rv_meals.setAdapter(mealsAdapter);
+    }
+    public void getMealId(int id)
+    {
+        this.id = id;
     }
 }

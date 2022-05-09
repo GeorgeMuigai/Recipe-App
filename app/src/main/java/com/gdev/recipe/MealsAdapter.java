@@ -1,10 +1,12 @@
 package com.gdev.recipe;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,12 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
             Picasso.get().load(List.getStrMealThumb()).into(holder.img_meal);
         }catch (Exception e){}
         holder.txt_meal_name.setText(List.getStrMeal());
+
+        holder.itemView.setOnClickListener(View ->{
+            Intent viewMeal = new Intent(View.getContext(), ViewMeal.class);
+            viewMeal.putExtra("id", Integer.toString(List.getIdMeal()));
+            View.getContext().startActivity(viewMeal);
+        });
     }
 
     @Override

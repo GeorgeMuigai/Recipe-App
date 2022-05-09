@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".ViewMeal">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_meal_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_meal_view"
+            android:text="Meal Name: "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_meal_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_meal_view"
+            android:layout_toRightOf="@+id/tt"
+            android:text="Meal Name"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txt_ingredients_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tt"
+            android:layout_marginTop="15dp"
+            android:text="Ingredients"
+            android:textColor="@color/black"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_ingredients"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_ingredients_title"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="7dp"
+            android:text="Ingredient 1 \n\ningredient 2"
+            android:textColor="@color/black"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/txt_measures"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_ingredients_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="7dp"
+            android:text="Measure 1 \n\nMeasure 2"
+            android:textColor="@color/black"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/txt_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_ingredients"
+            android:layout_marginTop="10dp"
+            android:text="The instructions on how to cook the meal"
+            android:textColor="@color/black"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/yt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_instructions"
+            android:layout_marginTop="9dp"
+            android:text="Watch on You Tube"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txt_link_yt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yt"
+            android:layout_marginTop="5dp"
+            android:text="you tube link"
+            android:textColor="@color/purple_700" />
+
+        <Button
+            android:id="@+id/btn_read_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            android:text="Read More"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_below="@id/txt_link_yt"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"/>
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>
