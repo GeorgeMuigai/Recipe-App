@@ -11,25 +11,40 @@
         android:layout_width="wrap_content"
         android:layout_height="500dp"
         android:src="@drawable/internet" />
+
     <TextView
+        android:id="@+id/txt_no_internet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gif_no_internet"
-        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
         android:text="No Active Internet connection"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/txt_no_internet"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/txt_please"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please connect to internet and click retry"
         android:layout_below="@+id/txt_no_internet"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
+        android:text="Please connect to internet and click retry"
         android:textColor="@color/black"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_please"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/black"
+        android:text="retry"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
 
 </RelativeLayout>

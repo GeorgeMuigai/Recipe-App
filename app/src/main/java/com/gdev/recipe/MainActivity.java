@@ -1,5 +1,9 @@
 package com.gdev.recipe;
 
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -9,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.gdev.recipe.nointernet.NoInternet;
 
 import java.util.ArrayList;
 
@@ -49,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         categoriesRecycler();
         mealsRecycler();
 
+        // checking for internet connection
+        checkInternetConnection();
+
         retrofitClient("Beef");
         mealsAdapter.notifyDataSetChanged();
     }
@@ -87,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<CategoriesModal> call, Throwable t) {
                 hideProgressBar();
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<MealsModal> call, Throwable t) {
                 hideProgressBar();
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -187,5 +196,16 @@ public class MainActivity extends AppCompatActivity {
         active.setVisibility(View.VISIBLE);
         category_txt.setVisibility(View.VISIBLE);
         searchView.setVisibility(View.VISIBLE);
+    }
+
+    private void checkInternetConnection()    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo == null || !networkInfo.isConnected())
+        {
+            Intent intent = new Intent(MainActivity.this, NoInternet.class);
+            startActivity(intent);
+        }
     }
 }
