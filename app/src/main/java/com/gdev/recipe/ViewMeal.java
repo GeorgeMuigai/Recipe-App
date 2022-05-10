@@ -1,14 +1,15 @@
 package com.gdev.recipe;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
@@ -44,8 +45,13 @@ public class ViewMeal extends AppCompatActivity {
         txt_link_yt = findViewById(R.id.txt_link_yt);
         btn_read_more = findViewById(R.id.btn_read_more);
 
+        txt_measures.setText("");
+        txt_ingredients.setText("");
+
+        // getting the meal id to display
         String id = getIntent().getStringExtra("id");
-        //Log.d("checking", "onCreate: " + id);
+
+        // calling retrofit
         retrofitClient(id);
     }
 
@@ -83,26 +89,62 @@ public class ViewMeal extends AppCompatActivity {
                 }
                 txt_meal_name_view.setText(meals.get(0).getStrMeal());
                 txt_instructions.setText(meals.get(0).getStrInstructions());
-                txt_link_yt.setText(meals.get(0).getStrYoutube());
+                if(!meals.get(0).getStrYoutube().isEmpty())
+                {
+                    txt_link_yt.setText(meals.get(0).getStrYoutube());
+                }else {
+                    txt_link_yt.setText("No youtube link");
+                }
+                String[] ingredients = {meals.get(0).getStrIngredient1(), meals.get(0).getStrIngredient2(),
+                                                    meals.get(0).getStrIngredient3(), meals.get(0).getStrIngredient4(),
+                                                    meals.get(0).getStrIngredient5(), meals.get(0).getStrIngredient6(),
+                                                    meals.get(0).getStrIngredient7(), meals.get(0).getStrIngredient8(), meals.get(0).getStrIngredient9(),
+                                                    meals.get(0).getStrIngredient10(), meals.get(0).getStrIngredient11(), meals.get(0).getStrIngredient12(),
+                                                    meals.get(0).getStrIngredient13(), meals.get(0).getStrIngredient14(), meals.get(0).getStrIngredient15(),
+                                                    meals.get(0).getStrIngredient16(), meals.get(0).getStrIngredient17(), meals.get(0).getStrIngredient18(),
+                                                    meals.get(0).getStrIngredient19(), meals.get(0).getStrIngredient20()};
+                String[] measures = {meals.get(0).getStrMeasure1(), meals.get(0).getStrMeasure2(),
+                        meals.get(0).getStrMeasure3(), meals.get(0).getStrMeasure4(),
+                        meals.get(0).getStrMeasure5(), meals.get(0).getStrMeasure6(),
+                        meals.get(0).getStrMeasure7(), meals.get(0).getStrMeasure8(), meals.get(0).getStrMeasure9(),
+                        meals.get(0).getStrMeasure10(), meals.get(0).getStrMeasure11(), meals.get(0).getStrMeasure12(),
+                        meals.get(0).getStrMeasure13(), meals.get(0).getStrMeasure14(), meals.get(0).getStrMeasure15(),
+                        meals.get(0).getStrMeasure16(), meals.get(0).getStrMeasure17(), meals.get(0).getStrMeasure18(),
+                        meals.get(0).getStrMeasure19(), meals.get(0).getStrMeasure20()};
                 try {
-                    txt_ingredients.setText(meals.get(0).getStrIngredient1() + "\n" + meals.get(0).getStrIngredient2() + "\n" +
-                            meals.get(0).getStrIngredient3() + "\n" + meals.get(0).getStrIngredient4() + "\n" +
-                            meals.get(0).getStrIngredient5() + "\n" + meals.get(0).getStrIngredient6() + "\n" +
-                            meals.get(0).getStrIngredient7() + "\n" + meals.get(0).getStrIngredient8() + "\n" + meals.get(0).getStrIngredient9() + "\n" +
-                            meals.get(0).getStrIngredient10() + "\n" + meals.get(0).getStrIngredient11() + "\n" + meals.get(0).getStrIngredient12() + "\n" +
-                            meals.get(0).getStrIngredient13() + "\n" + meals.get(0).getStrIngredient14() + "\n" + meals.get(0).getStrIngredient15() + "\n" +
-                            meals.get(0).getStrIngredient16() + "\n" + meals.get(0).getStrIngredient17() + "\n" + meals.get(0).getStrIngredient18() + "\n" +
-                            meals.get(0).getStrIngredient19() + "\n" + meals.get(0).getStrIngredient20() + "\n");
-                    txt_measures.setText(meals.get(0).getStrMeasure1() + "\n" + meals.get(0).getStrMeasure1() + "\n" + meals.get(0).getStrMeasure1() + "\n" +
-                            meals.get(0).getStrMeasure1() + "\n" + meals.get(0).getStrMeasure2() + "\n" + meals.get(0).getStrMeasure3() + "\n" +
-                            meals.get(0).getStrMeasure4() + "\n" + meals.get(0).getStrMeasure5() + "\n" + meals.get(0).getStrMeasure6() + "\n" + meals.get(0).getStrMeasure7() + "\n" +
-                            meals.get(0).getStrMeasure8() + "\n" + meals.get(0).getStrMeasure9() + "\n" + meals.get(0).getStrMeasure10() + "\n" + meals.get(0).getStrMeasure11() + "\n" +
-                            meals.get(0).getStrMeasure12() + "\n" + meals.get(0).getStrMeasure13() + "\n" + meals.get(0).getStrMeasure14() + "\n" + meals.get(0).getStrMeasure15() + "\n" +
-                            meals.get(0).getStrMeasure16() + "\n" + meals.get(0).getStrMeasure17() + "\n" + meals.get(0).getStrMeasure18() + "\n" + meals.get(0).getStrMeasure19() + "\n" +
-                            meals.get(0).getStrMeasure20() + "\n");
+                    for (int i = 0; i < ingredients.length; i++) {
+                        if(ingredients[i] != null && measures[i] != null)
+                        {
+                            txt_ingredients.append(ingredients[i] + "\n");
+                            txt_measures.append(measures[i] + "\n");
+                        }
+                    }
                 } catch (Exception e) {
                     Toast.makeText(ViewMeal.this, "Failed to load ingredients", Toast.LENGTH_SHORT).show();
                 }
+
+                // opening the website
+                btn_read_more.setOnClickListener(View ->{
+                    if(!meals.get(0).getStrSource().isEmpty())
+                    {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(meals.get(0).getStrSource()));
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "No link found", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // opening You Tube
+                txt_link_yt.setOnClickListener(View ->{
+                    if(!meals.get(0).getStrYoutube().isEmpty())
+                    {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(meals.get(0).getStrYoutube()));
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "No link found", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
 
             @Override

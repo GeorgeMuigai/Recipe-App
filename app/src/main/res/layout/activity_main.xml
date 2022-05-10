@@ -8,14 +8,25 @@
     android:padding="8dp"
     tools:context=".MainActivity">
 
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:queryHint="Search for a meal"
+        android:visibility="gone"/>
+
+
     <TextView
         android:id="@+id/txt_category_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
         android:layout_marginLeft="8dp"
         android:text="Categories"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -36,7 +47,8 @@
         android:layout_marginLeft="8dp"
         android:text="Meals"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_meals"

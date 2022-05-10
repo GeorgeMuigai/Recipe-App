@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".nointernet.NoInternet">
+
+    <ImageView
+        android:id="@+id/gif_no_internet"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:src="@drawable/internet" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gif_no_internet"
+        android:textColor="@color/black"
+        android:text="No Active Internet connection"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/txt_no_internet"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/txt_please"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please connect to internet and click retry"
+        android:layout_below="@+id/txt_no_internet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+</RelativeLayout>

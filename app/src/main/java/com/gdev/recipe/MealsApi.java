@@ -13,4 +13,7 @@ public interface MealsApi {
 
     @GET
     Call<MealsModal> getMealById(@Url String url);
+
+    @GET
+    Call<MealsModal> getSearchedMeal(@Url String url);
 }

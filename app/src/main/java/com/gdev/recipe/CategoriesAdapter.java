@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +41,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
 
         holder.itemView.setOnClickListener(View ->{
-            //categoryItemClick.onCategoryClick(position);
             mainActivity.retrofitClient(list.getStrCategory());
         });
     }
@@ -53,11 +53,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img_category;
         TextView txt_category;
+        RelativeLayout parent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             img_category = itemView.findViewById(R.id.img_category);
             txt_category = itemView.findViewById(R.id.txt_category);
+            parent = itemView.findViewById(R.id.parent);
         }
     }
 }

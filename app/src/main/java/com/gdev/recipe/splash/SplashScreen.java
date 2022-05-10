@@ -15,7 +15,6 @@ import com.gdev.recipe.R;
 
 public class SplashScreen extends AppCompatActivity {
 
-    SubsamplingScaleImageView img_splash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +23,6 @@ public class SplashScreen extends AppCompatActivity {
 
         // setting the activity to be fullscreen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        img_splash = findViewById(R.id.img_splash);
-
-        img_splash.setImage(ImageSource.resource(R.drawable.splash2));
 
         new Handler().postDelayed(new Runnable() {
             @Override

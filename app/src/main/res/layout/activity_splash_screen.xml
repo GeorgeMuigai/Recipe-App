@@ -7,9 +7,30 @@
     android:background="#232221"
     tools:context=".splash.SplashScreen">
 
-    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/img_splash"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/clicker_script"
+        android:id="@+id/txt_app_name"
+        android:text="Recipe"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="50sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="know how to prepare your favourite meal"
+        android:layout_below="@+id/txt_app_name"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_marginTop="6dp"
+        android:textSize="16sp"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"/>
 
 </RelativeLayout>
