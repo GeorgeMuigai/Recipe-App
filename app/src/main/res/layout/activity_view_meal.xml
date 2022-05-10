@@ -51,7 +51,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tt"
             android:layout_marginTop="15dp"
@@ -59,7 +59,6 @@
             android:text="Measures"
             android:textColor="@color/black"
             android:textSize="23sp"
-            android:textAlignment="textStart"
             android:textStyle="bold" />
 
 
@@ -76,7 +75,7 @@
 
         <TextView
             android:id="@+id/txt_measures"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_ingredients_title"
             android:layout_alignParentEnd="true"
