@@ -23,6 +23,7 @@ public class NoInternet extends AppCompatActivity {
         btn_retry.setOnClickListener(View ->{
             Intent intent = new Intent(NoInternet.this, MainActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 }

@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                                 return;
                             }
                             MealsModal mealsModal = response.body();
+                            assert mealsModal != null;
                             ArrayList<MealsList> searched = mealsModal.getMeals();
                             mealsList.clear();
                             if (response.body() == null) {
@@ -206,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(MainActivity.this, NoInternet.class);
             startActivity(intent);
+            finish();
         }
     }
 }

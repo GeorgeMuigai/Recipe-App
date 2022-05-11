@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +33,9 @@ public class ViewMeal extends AppCompatActivity {
 
     List<MealsList> list;
 
+    RelativeLayout parent_view_meal;
+    ProgressBar progress_view_meal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,9 @@ public class ViewMeal extends AppCompatActivity {
         txt_instructions = findViewById(R.id.txt_instructions);
         txt_link_yt = findViewById(R.id.txt_link_yt);
         btn_read_more = findViewById(R.id.btn_read_more);
+
+        parent_view_meal = findViewById(R.id.view_meal_parent);
+        progress_view_meal = findViewById(R.id.progress_view_meal);
 
         txt_measures.setText("");
         txt_ingredients.setText("");
@@ -70,6 +79,7 @@ public class ViewMeal extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<MealsModal> call, Response<MealsModal> response) {
+                showHide();
                 if (!response.isSuccessful() && response.body() != null) {
                     Toast.makeText(ViewMeal.this, "Error code : " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
@@ -149,8 +159,14 @@ public class ViewMeal extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MealsModal> call, Throwable t) {
-                Toast.makeText(ViewMeal.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                showHide();
+                Toast.makeText(ViewMeal.this, "Something went wrong \nMake sure you have an active internet connection", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showHide()    {
+        parent_view_meal.setVisibility(View.VISIBLE);
+        progress_view_meal.setVisibility(View.GONE);
     }
 }

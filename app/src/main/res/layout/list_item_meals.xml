@@ -11,13 +11,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/img_meal"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:src="@color/black" />
+            android:src="@color/black"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/txt_meal_name"
